@@ -1,0 +1,9 @@
+{
+    "cmake.preferredGenerators": [
+        "MinGW Makefiles",
+        "Visual Studio 15 2017",
+        "Ninja",
+        "Xcode"
+    ],
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
+}
