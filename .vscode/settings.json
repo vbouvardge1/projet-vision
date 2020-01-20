@@ -1,7 +1,7 @@
 {
     "cmake.preferredGenerators": [
         "MinGW Makefiles",
-        "Visual Studio 15 2017",
+        "Visual Studio 16 2019",
         "Ninja",
         "Xcode"
     ],
