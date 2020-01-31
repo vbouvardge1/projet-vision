@@ -15,6 +15,8 @@ if(libraries)
     target_link_libraries(my_exe ${libraries})
 endif()
 
+target_link_libraries(my_exe ${OpenCV_LIBS})
+
 install( TARGETS my_exe
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
