@@ -1,9 +1,9 @@
 {
     "cmake.preferredGenerators": [
-        "MinGW Makefiles",
-        "Visual Studio 16 2019",
-        "Ninja",
-        "Xcode"
+        "Ninja"
     ],
-    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+    "cmake.configureSettings": {
+        "CMAKE_PREFIX_PATH" : "C:\\travail\\bouvard2\\opencv\\build\\x64\\vc15\\lib"
+    }
 }
