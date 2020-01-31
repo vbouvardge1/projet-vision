@@ -3,7 +3,7 @@ file(GLOB_RECURSE sources
     "*.cpp"
 )
 
-add_executable(my_exe ${sources})
+add_executable(createsamples ${sources})
 
 # Link to math library if compiler is gnu
 if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
@@ -12,12 +12,12 @@ endif()
 
 # Link to user libraries (if there are any)
 if(libraries)
-    target_link_libraries(my_exe ${libraries})
+    target_link_libraries(createsamples ${libraries})
 endif()
 
-target_link_libraries(my_exe ${OpenCV_LIBS})
+target_link_libraries(createsamples ${OpenCV_LIBS})
 
-install( TARGETS my_exe
+install( TARGETS createsamples
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
