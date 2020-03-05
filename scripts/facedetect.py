@@ -15,7 +15,9 @@ import cv2 as cv
 
 # local modules
 from video import create_capture
-from common import clock, draw_str
+from common import draw_str
+#import draw_str
+import clock
 
 
 def detect(img, cascade):

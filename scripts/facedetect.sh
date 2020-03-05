@@ -2,7 +2,9 @@
 
 # Script pour tester l'algorithme de detection
 
-# Pre-requis : Avoir lancer successivement le script generate_negatives.sh
-#              et le script traincascade.sh 
+## Pre-requis : Avoir lancer successivement le script traincascade.sh 
 
-python3 facedetect.py --cascade out.xml  0
+#Essayer le cascade.xml en video
+python videodetect.py
+#Essayer le cascade.xml en image. Vous pouvez changer l'image de reférence dans imagedetect.py
+python imagedetect.py

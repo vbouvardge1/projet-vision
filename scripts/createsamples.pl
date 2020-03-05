@@ -1,25 +1,25 @@
 #!/usr/bin/perl
 use File::Basename;
 use strict;
-#########################################################################
-# Create test samples from an image applying distortions repeatedly 
-# (create many many test samples from many images applying distortions)
+##########################################################################
+# Create samples from an image applying distortions repeatedly 
+# (create many many samples from many images applying distortions)
 #
-#  perl createtestsamples.pl <positives.dat> <negatives.dat> <output_dir>
+#  perl createtrainsamples.pl <positives.dat> <negatives.dat> <vec_output_dir>
 #      [<totalnum = 7000>] [<createsample_command_options = ./createsamples -w 20 -h 20...>]
-#  ex) perl createtestsamples.pl positives.dat negatives.dat tests
+#  ex) perl createtrainsamples.pl positives.dat negatives.dat samples
 #
 # Author: Naotoshi Seo
 # Date  : 09/12/2008 Add <totalnum> and <createsample_command_options> options
 # Date  : 06/02/2007
 # Date  : 03/12/2006
 #########################################################################
-my $cmd = './createsamples -bgcolor 0 -bgthresh 0 -maxxangle 1.1 -maxyangle 1.1 -maxzangle 0.5 maxidev 40';
-my $totalnum = 1000; # 1000(?) Do not mind. This is just for testing
+my $cmd = './createsamples -bgcolor 0 -bgthresh 0 -maxxangle 1.1 -maxyangle 1.1 maxzangle 0.5 -maxidev 40 -w 20 -h 20';
+my $totalnum = 7000;
 my $tmpfile  = 'tmp';
 
 if ($#ARGV < 2) {
-    print "Usage: perl createtestsamples.pl\n";
+    print "Usage: perl createtrainsamples.pl\n";
     print "  <positives_collection_filename>\n";
     print "  <negatives_collection_filename>\n";
     print "  <output_dirname>\n";
@@ -62,7 +62,7 @@ for (my $k = 0; $k < $#positives; $k++ ) {
 
     # Pick up negative images randomly
     my @localnegatives = ();
-    for (my $i = 0; $i < $num+1; $i++) {
+    for (my $i = 0; $i < $num; $i++) {
         my $ind = int(rand($#negatives));
         push(@localnegatives, $negatives[$ind]);
     }
@@ -72,22 +72,8 @@ for (my $k = 0; $k < $#positives; $k++ ) {
     #system("cat $tmpfile");
 
     !chomp($img);
-    my $subbasename = substr($img, $imgdirlen);
-    my $info = $outputdir . $subbasename . "/info.dat";
-    print "$cmd -img $img -bg $tmpfile -info $info -num $num" . "\n";
-    system("$cmd -img $img -bg $tmpfile -info $info -num $num");
-
-    # Modify path in the info.dat
-    open(INFO, $info); # or die;
-    my @lines = <INFO>;
-    close(INFO);
-    open(INFO, "> $info");
-    foreach my $line (@lines) {
-        $line = $outputdir . $subbasename . '/' . $line;
-        print INFO $line;
-    }
-    close(INFO);
+    my $vec = $outputdir . substr($img, $imgdirlen) . ".vec" ;
+    print "$cmd -img $img -bg $tmpfile -vec $vec -num $num" . "\n";
+    system("$cmd -img $img -bg $tmpfile -vec $vec -num $num");
 }
 unlink($tmpfile);
-
-
