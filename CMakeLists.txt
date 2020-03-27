@@ -32,6 +32,9 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/lib" AND IS_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
     )
 endif()
 
+# packages
+find_package(OpenCV REQUIRED) # http://opencv.org
+
 # Recurse into the "src" subdirectory. This does not actually
 # cause another cmake executable to run. The same process will walk through
 # the project's entire directory structure.

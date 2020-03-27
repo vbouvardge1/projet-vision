@@ -15,6 +15,14 @@ if(libraries)
     target_link_libraries(my_exe ${libraries})
 endif()
 
+target_link_libraries(my_exe 
+    opencv_face 
+    opencv_core 
+    opencv_imgproc 
+    opencv_highgui 
+    opencv_objdetect 
+    opencv_imgproc)
+
 install( TARGETS my_exe
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
